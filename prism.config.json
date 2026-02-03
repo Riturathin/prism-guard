@@ -1,0 +1,8 @@
+{
+  "react": {
+    "maxProps": 7,
+    "maxComponentLines": 250,
+    "maxHooks": 5,
+    "maxJSXDepth": 4
+  }
+}
