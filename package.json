@@ -1,8 +1,20 @@
 {
   "name": "prism-guard",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "analyze": "node packages/cli/dist/index.js"
+  },
+  "devDependencies": {
+    "@types/babel__traverse": "^7.28.0",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.29.0",
+    "@babel/traverse": "^7.29.0"
   }
 }
