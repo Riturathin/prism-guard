@@ -11,6 +11,8 @@ export { reportConsole } from "./reporters/console"
 export { reportJson } from "./reporters/json"
 export { reportHtml } from "./reporters/html"
 export { reportSarif } from "./reporters/sarif"
+export * from "./scoring/score";
+export * from "./scoring/file-score";
 export type {
   Rule,
   Diagnostic,

@@ -1,4 +1,18 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.reportSarif = exports.reportHtml = exports.reportJson = exports.reportConsole = exports.createDiagnostic = exports.loc = exports.isSourceFile = exports.isReactFile = exports.parseSource = exports.findCycles = exports.buildImportGraph = exports.shouldFail = exports.RuleRegistry = exports.analyze = exports.detectReact = exports.discoverFiles = exports.validateConfig = exports.DEFAULT_CONFIG = exports.loadConfig = void 0;
 var config_1 = require("./config");
@@ -33,3 +47,5 @@ var html_1 = require("./reporters/html");
 Object.defineProperty(exports, "reportHtml", { enumerable: true, get: function () { return html_1.reportHtml; } });
 var sarif_1 = require("./reporters/sarif");
 Object.defineProperty(exports, "reportSarif", { enumerable: true, get: function () { return sarif_1.reportSarif; } });
+__exportStar(require("./scoring/score"), exports);
+__exportStar(require("./scoring/file-score"), exports);
