@@ -1,20 +1,26 @@
 {
   "name": "prism-guard",
   "private": true,
+  "license": "MIT",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "analyze": "node packages/cli/dist/index.js"
+    "start": "npm run dev:fixture",
+    "build": "npm run build --workspaces --if-present",
+    "clean": "rm -rf packages/**/dist",
+    "dev": "ts-node packages/cli/src/index.ts analyze",
+    "dev:fixture": "ts-node packages/cli/src/index.ts analyze --cwd fixtures/sample-react",
+    "build:watch": "tsc -b --watch",
+    "analyze": "node packages/cli/dist/index.js analyze",
+    "analyze:fixture": "node packages/cli/dist/index.js analyze --cwd fixtures/sample-react",
+    "analyze:json": "node packages/cli/dist/index.js analyze --cwd fixtures/sample-react --json",
+    "analyze:html": "node packages/cli/dist/index.js analyze --cwd fixtures/sample-react --html"
   },
   "devDependencies": {
     "@types/babel__traverse": "^7.28.0",
+    "@types/node": "^22.10.0",
     "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.3"
-  },
-  "dependencies": {
-    "@babel/parser": "^7.29.0",
-    "@babel/traverse": "^7.29.0"
   }
 }

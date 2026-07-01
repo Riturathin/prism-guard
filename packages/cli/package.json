@@ -1,15 +1,18 @@
 {
-    "name": "prism-guard-cli",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@prism-guard/core": "file:../core"
-    },
-    "bin": {
-        "prism-guard": "dist/index.js"
-    },
-    "scripts": {
-        "build": "tsc",
-        "dev": "npx ts-node --project tsconfig.json src/index.ts"
-    }
+  "name": "@prism-guard/cli",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@prism-guard/core": "file:../core",
+    "@prism-guard/rules-react": "file:../rules-react",
+    "@prism-guard/rules-performance": "file:../rules-performance",
+    "@prism-guard/rules-architecture": "file:../rules-architecture"
+  },
+  "bin": {
+    "prism-guard": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "npx ts-node --project tsconfig.json src/index.ts"
+  }
 }

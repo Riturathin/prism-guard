@@ -1,0 +1,17 @@
+{
+  "react": {
+    "maxProps": 7,
+    "maxComponentLines": 250,
+    "maxHooks": 5,
+    "maxJSXDepth": 4,
+    "maxUseEffects": 3
+  },
+  "performance": {
+    "bundleBudgetKb": 500,
+    "heavyImports": ["lodash"]
+  },
+  "architecture": {
+    "layers": ["ui", "features", "shared", "data"],
+    "featureDirs": ["features"]
+  }
+}
