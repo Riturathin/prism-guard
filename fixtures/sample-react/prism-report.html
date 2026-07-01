@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prism Guard Report</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+    h1 { font-size: 1.75rem; margin-bottom: 0.5rem; color: #f8fafc; }
+    .meta { color: #94a3b8; margin-bottom: 2rem; font-size: 0.9rem; }
+    .stats { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .stat { background: #1e293b; border-radius: 8px; padding: 1rem 1.5rem; min-width: 120px; }
+    .stat-value { font-size: 1.5rem; font-weight: 700; }
+    .stat-label { font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; }
+    table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 8px; overflow: hidden; }
+    th { background: #334155; text-align: left; padding: 0.75rem 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; }
+    td { padding: 0.75rem 1rem; border-top: 1px solid #334155; font-size: 0.875rem; vertical-align: top; }
+    tr:hover td { background: #263348; }
+    .severity-error { color: #f87171; font-weight: 600; }
+    .severity-warning { color: #fbbf24; font-weight: 600; }
+    .severity-info { color: #60a5fa; font-weight: 600; }
+    .rule-id { font-family: monospace; font-size: 0.8rem; color: #a78bfa; }
+    .file-path { font-family: monospace; font-size: 0.8rem; color: #94a3b8; word-break: break-all; }
+    .recommendation { color: #94a3b8; font-size: 0.8rem; margin-top: 0.25rem; }
+    .empty { text-align: center; padding: 3rem; color: #64748b; }
+  </style>
+</head>
+<body>
+  <h1>Prism Guard Report</h1>
+  <p class="meta">Generated 2026-07-01T20:23:58.123Z</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-value">12</div><div class="stat-label">Files</div></div>
+    <div class="stat"><div class="stat-value">21</div><div class="stat-label">Rules</div></div>
+    <div class="stat"><div class="stat-value">2</div><div class="stat-label">Errors</div></div>
+    <div class="stat"><div class="stat-value">14</div><div class="stat-label">Warnings</div></div>
+    <div class="stat"><div class="stat-value">25ms</div><div class="stat-label">Duration</div></div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Severity</th>
+        <th>Rule</th>
+        <th>Location</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">feature-boundary</span><br><span style="font-size:0.75rem;color:#64748b">architecture</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/features/billing/BillingView.tsx:1:0</span></td>
+    <td>Cross-feature import from &quot;auth&quot; into &quot;billing&quot;<div class="recommendation">→ Use shared modules or public feature APIs instead of direct cross-feature imports</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">no-inline-callback</span><br><span style="font-size:0.75rem;color:#64748b">react</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/BadList.tsx:16:33</span></td>
+    <td>Inline callback in JSX attribute causes unnecessary re-renders<div class="recommendation">→ Extract the callback to useCallback or a named handler outside JSX</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">no-array-index-key</span><br><span style="font-size:0.75rem;color:#64748b">react</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/BadList.tsx:16:17</span></td>
+    <td>Array index &quot;index&quot; used as React key<div class="recommendation">→ Use a stable unique identifier from your data instead of array index</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">no-anonymous-component</span><br><span style="font-size:0.75rem;color:#64748b">react</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/BadList.tsx:24:15</span></td>
+    <td>Anonymous default-exported component<div class="recommendation">→ Name your component for better debugging and DevTools support</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">expensive-render</span><br><span style="font-size:0.75rem;color:#64748b">performance</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/BadList.tsx:15:7</span></td>
+    <td>.map() used directly in JSX without memoization<div class="recommendation">→ Extract list rendering to a memoized child component or use useMemo</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">unstable-context</span><br><span style="font-size:0.75rem;color:#64748b">react</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/ContextExample.tsx:7:32</span></td>
+    <td>Inline object/array passed as Context.Provider value<div class="recommendation">→ Memoize the context value with useMemo to avoid unnecessary re-renders</div></td>
+  </tr>
+<tr>
+    <td class="severity-info">info</td>
+    <td><span class="rule-id">lazy-image</span><br><span style="font-size:0.75rem;color:#64748b">performance</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/ImageGallery.tsx:6:6</span></td>
+    <td>&lt;img&gt; without loading=&quot;lazy&quot;<div class="recommendation">→ Add loading=&quot;lazy&quot; or use a lazy-loading image component</div></td>
+  </tr>
+<tr>
+    <td class="severity-info">info</td>
+    <td><span class="rule-id">lazy-image</span><br><span style="font-size:0.75rem;color:#64748b">performance</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/ImageGallery.tsx:7:6</span></td>
+    <td>&lt;img&gt; without loading=&quot;lazy&quot;<div class="recommendation">→ Add loading=&quot;lazy&quot; or use a lazy-loading image component</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">excessive-useeffect</span><br><span style="font-size:0.75rem;color:#64748b">react</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/NestedExample.tsx:10:2</span></td>
+    <td>Component &quot;NestedExample&quot; has 4 useEffect calls (max 3)<div class="recommendation">→ Consolidate effects, derive state, or extract custom hooks</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">nested-component</span><br><span style="font-size:0.75rem;color:#64748b">react</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/NestedExample.tsx:6:2</span></td>
+    <td>Component &quot;InnerWidget&quot; defined inside &quot;NestedExample&quot;<div class="recommendation">→ Move nested components outside to prevent remounting on every parent render</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">duplicate-hooks</span><br><span style="font-size:0.75rem;color:#64748b">maintainability</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/NestedExample.tsx:10:2</span></td>
+    <td>Hook &quot;useEffect&quot; called 4 times in the same component<div class="recommendation">→ Extract shared hook logic into a custom hook</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">blocking-import</span><br><span style="font-size:0.75rem;color:#64748b">performance</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/Overloaded.tsx:2:0</span></td>
+    <td>Heavy library &quot;lodash&quot; imported synchronously<div class="recommendation">→ Use dynamic import() or import specific submodules to reduce bundle size</div></td>
+  </tr>
+<tr>
+    <td class="severity-info">info</td>
+    <td><span class="rule-id">dynamic-import</span><br><span style="font-size:0.75rem;color:#64748b">performance</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/Overloaded.tsx:3:0</span></td>
+    <td>Large component imported statically — consider lazy loading<div class="recommendation">→ Use React.lazy() with dynamic import() for code splitting</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">expensive-render</span><br><span style="font-size:0.75rem;color:#64748b">performance</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/Overloaded.tsx:27:7</span></td>
+    <td>.map() used directly in JSX without memoization<div class="recommendation">→ Extract list rendering to a memoized child component or use useMemo</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">excessive-props</span><br><span style="font-size:0.75rem;color:#64748b">maintainability</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/Overloaded.tsx:16:7</span></td>
+    <td>Component accepts 8 props (max 7)<div class="recommendation">→ Group related props into objects or split the component</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">duplicate-hooks</span><br><span style="font-size:0.75rem;color:#64748b">maintainability</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/Overloaded.tsx:17:20</span></td>
+    <td>Hook &quot;useState&quot; called 2 times in the same component<div class="recommendation">→ Extract shared hook logic into a custom hook</div></td>
+  </tr>
+<tr>
+    <td class="severity-warning">warning</td>
+    <td><span class="rule-id">duplicate-hooks</span><br><span style="font-size:0.75rem;color:#64748b">maintainability</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/Overloaded.tsx:20:2</span></td>
+    <td>Hook &quot;useEffect&quot; called 2 times in the same component<div class="recommendation">→ Extract shared hook logic into a custom hook</div></td>
+  </tr>
+<tr>
+    <td class="severity-error">error</td>
+    <td><span class="rule-id">circular-import</span><br><span style="font-size:0.75rem;color:#64748b">architecture</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/circular-a.ts:1:0</span></td>
+    <td>Circular import detected: circular-a.ts → circular-b.ts → circular-a.ts<div class="recommendation">→ Refactor shared logic into a separate module to break the cycle</div></td>
+  </tr>
+<tr>
+    <td class="severity-error">error</td>
+    <td><span class="rule-id">circular-import</span><br><span style="font-size:0.75rem;color:#64748b">architecture</span></td>
+    <td><span class="file-path">/Users/riturathinsharma/Desktop/Github Projects/workspace/prism-guard/fixtures/sample-react/src/components/circular-b.ts:1:0</span></td>
+    <td>Circular import detected: circular-a.ts → circular-b.ts → circular-a.ts<div class="recommendation">→ Refactor shared logic into a separate module to break the cycle</div></td>
+  </tr>
+    </tbody>
+  </table>
+</body>
+</html>

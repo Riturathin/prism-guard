@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 interface Item {
   id: string
@@ -13,7 +13,7 @@ export function BadList({ items }: BadListProps) {
   return (
     <ul>
       {items.map((item, index) => (
-        <li key={index} onClick={() => console.log(item.id)}>
+        <li key={index} onClick={() => {}}>
           {item.label}
         </li>
       ))}

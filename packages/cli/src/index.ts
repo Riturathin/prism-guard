@@ -92,15 +92,8 @@ function createRegistry(): RuleRegistry {
 }
 
 async function runAnalyze(args: AnalyzeArgs): Promise<number> {
-  //
-  // Resolve project root once.
-  // Never mutate process.cwd().
-  //
   const root = path.resolve(args.cwd ?? process.cwd());
 
-  //
-  // Load config
-  //
   const configPath = args.config
     ? path.resolve(args.config)
     : path.join(root, "prism.config.json");
@@ -132,7 +125,8 @@ async function runAnalyze(args: AnalyzeArgs): Promise<number> {
     const output = reportJson(result);
 
     if (args.output) {
-      fs.writeFileSync(args.output, output);
+      fs.writeFileSync(args.output, output, "utf8");
+      console.log(`✔ JSON report written to ${args.output}`);
     } else {
       console.log(output);
     }
@@ -142,7 +136,7 @@ async function runAnalyze(args: AnalyzeArgs): Promise<number> {
     const outPath =
       args.output ?? path.join(root, "prism-report.html");
 
-    fs.writeFileSync(outPath, output);
+    fs.writeFileSync(outPath, output, "utf8");
 
     console.log(`✔ HTML report written to ${outPath}`);
   } else if (args.sarif) {
@@ -151,7 +145,7 @@ async function runAnalyze(args: AnalyzeArgs): Promise<number> {
     const outPath =
       args.output ?? path.join(root, "prism-report.sarif");
 
-    fs.writeFileSync(outPath, output);
+    fs.writeFileSync(outPath, output, "utf8");
 
     console.log(`✔ SARIF report written to ${outPath}`);
   } else {
@@ -163,7 +157,7 @@ async function runAnalyze(args: AnalyzeArgs): Promise<number> {
   return shouldFail(config, result.diagnostics) ? 1 : 0;
 }
 
-function printHelp() {
+function printHelp(): void {
   console.log(`
 Prism Guard
 
@@ -176,29 +170,25 @@ Usage
 Options
 
   --cwd <path>        Project root
-
   --config <path>     Config file
-
   --json              JSON output
-
   --html              HTML report
-
   --sarif             SARIF report
-
   --output <path>     Output file
-
   --verbose           Detailed console output
-
   -h, --help          Help
 `);
 }
 
-async function main() {
+async function main(): Promise<void> {
   const { command, args } = parseArgs(process.argv);
 
   switch (command) {
-    case "analyze":
-      process.exit(await runAnalyze(args));
+    case "analyze": {
+      const exitCode = await runAnalyze(args);
+      process.exitCode = exitCode;
+      return;
+    }
 
     case "help":
     case "--help":
@@ -209,12 +199,13 @@ async function main() {
     default:
       console.error(`Unknown command "${command}"`);
       printHelp();
-      process.exit(1);
+      process.exitCode = 1;
+      return;
   }
 }
 
 main().catch((err) => {
   console.error("✖ Prism Guard failed");
   console.error(err);
-  process.exit(1);
+  process.exitCode = 1;
 });
