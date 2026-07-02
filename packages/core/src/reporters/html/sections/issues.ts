@@ -1,46 +1,80 @@
 import type { HtmlReportModel } from "../model";
 
 export function issues(model: HtmlReportModel): string {
-  const rows = model.result.diagnostics
-    .map(
-      d => `
+
+  const diagnostics = model.result.diagnostics;
+
+  const rows = diagnostics.map(d => `
+
 <tr>
 
 <td>
+
 <span class="severity ${d.severity}">
-${icon(d.severity)} ${d.severity.toUpperCase()}
+
+${icon(d.severity)}
+
+${d.severity.toUpperCase()}
+
 </span>
+
 </td>
 
-<td>
-${d.rule}
-</td>
+<td>${d.rule}</td>
 
-<td>
-${shortFile(d.file)}
-</td>
+<td>${shortFile(d.file)}</td>
 
-<td>
-${d.line}:${d.column}
-</td>
+<td>${d.line}:${d.column}</td>
 
-<td>
-${d.message}
-</td>
+<td>${d.message}</td>
 
-<td>
-${d.recommendation}
-</td>
+<td>${d.recommendation}</td>
 
 </tr>
-`
-    )
-    .join("");
+
+`).join("");
 
   return `
-<section>
 
-<h2>Issues</h2>
+<details class="accordion">
+
+<summary>
+
+Issues
+
+<span class="accordion-badge">
+
+${diagnostics.length}
+
+</span>
+
+</summary>
+
+<div class="accordion-content">
+
+<div class="pg-table">
+
+<div class="table-toolbar">
+
+<input
+class="table-search"
+type="text"
+placeholder="Search issues..."
+>
+Entries per page
+<select class="rows-select">
+
+<option value="10" selected>10</option>
+
+<option value="20">20</option>
+
+<option value="50">50</option>
+
+<option value="all">All</option>
+
+</select>
+
+</div>
 
 <table class="issues-table">
 
@@ -72,22 +106,47 @@ ${rows}
 
 </table>
 
-</section>
+<div class="table-footer">
+
+<div class="page-info"></div>
+
+<div class="pagination"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</details>
+
 `;
 }
 
-function shortFile(file: string) {
-  return file.split("/").slice(-2).join("/");
-}
+function shortFile(file: string): string {
 
-function icon(level: string) {
+    const parts = file.replace(/\\/g, "/").split("/");
+  
+    const srcIndex = parts.lastIndexOf("src");
+    if (srcIndex !== -1) {
+      return parts.slice(srcIndex).join("/");
+    }
+  
+    const featuresIndex = parts.lastIndexOf("features");
+    if (featuresIndex !== -1) {
+      return parts.slice(featuresIndex).join("/");
+    }
+  
+    return parts.slice(-3).join("/");
+  
+  }
+
+function icon(level: string): string {
   switch (level) {
     case "error":
       return "🔴";
-
     case "warning":
       return "🟠";
-
     default:
       return "🔵";
   }

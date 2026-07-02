@@ -18,12 +18,25 @@ function recommendations(model) {
         cards.push(card("🔵 Low", "Lazy Images", "Add loading=\"lazy\" to improve page load performance."));
     }
     if (cards.length === 0) {
-        cards.push(card("🟢 Excellent", "Architecture Health", "No significant recommendations. Great job!"));
+        cards.push(card("🟢 Excellent", "Architecture Health", "No significant recommendations."));
     }
     return `
-<section>
 
-<h2>Architecture Recommendations</h2>
+<details class="accordion">
+
+<summary>
+
+Architecture Recommendations
+
+<span class="accordion-badge">
+
+${cards.length}
+
+</span>
+
+</summary>
+
+<div class="accordion-content">
 
 <div class="recommendation-grid">
 
@@ -31,11 +44,15 @@ ${cards.join("")}
 
 </div>
 
-</section>
+</div>
+
+</details>
+
 `;
 }
 function card(level, title, body) {
     return `
+
 <div class="recommendation-card">
 
 <h3>${level}</h3>
@@ -45,5 +62,6 @@ function card(level, title, body) {
 <p>${body}</p>
 
 </div>
+
 `;
 }

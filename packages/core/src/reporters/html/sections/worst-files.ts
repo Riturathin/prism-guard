@@ -20,7 +20,7 @@ ${files
 
     <div class="wf-header">
 
-        <span class="wf-name">${shortName(file.file)}</span>
+        <span class="wf-name">${shortFile(file.file)}</span>
 
         <span class="wf-score">${file.score}/100</span>
 
@@ -56,14 +56,36 @@ ${files
 `;
 }
 
-function shortName(path: string) {
-  return path.split("/").slice(-2).join("/");
+function shortFile(file: string): string {
+
+  const parts = file.replace(/\\/g, "/").split("/");
+
+  const srcIndex = parts.lastIndexOf("src");
+
+  if (srcIndex !== -1) {
+    return parts.slice(srcIndex).join("/");
+  }
+
+  const featuresIndex = parts.lastIndexOf("features");
+
+  if (featuresIndex !== -1) {
+    return parts.slice(featuresIndex).join("/");
+  }
+
+  return parts.slice(-3).join("/");
+
 }
 
-function color(score: number) {
+function color(score: number): string {
+
   if (score >= 90) return "#22c55e";
+
   if (score >= 75) return "#84cc16";
+
   if (score >= 60) return "#f59e0b";
+
   if (score >= 40) return "#f97316";
+
   return "#ef4444";
+
 }

@@ -30,7 +30,21 @@ export function scoreRing(model: HtmlReportModel): string {
 
     <h2>${health(score)}</h2>
 
-</div>
+    <p class="score-meta">
+
+    🔴 ${errors(model)} Errors
+
+    &nbsp;&nbsp;•&nbsp;&nbsp;
+
+    🟠 ${warnings(model)} Warnings
+
+    &nbsp;&nbsp;•&nbsp;&nbsp;
+
+    🔵 ${info(model)} Info
+
+    </p>
+
+    </div>
 `;
 }
 
@@ -49,3 +63,21 @@ function ringColor(score: number): string {
   if (score >= 40) return "#f97316"; // Orange
   return "#ef4444"; // Red
 }
+
+function errors(model: HtmlReportModel): number {
+    return model.result.diagnostics.filter(
+      d => d.severity === "error"
+    ).length;
+  }
+  
+  function warnings(model: HtmlReportModel): number {
+    return model.result.diagnostics.filter(
+      d => d.severity === "warning"
+    ).length;
+  }
+  
+  function info(model: HtmlReportModel): number {
+    return model.result.diagnostics.filter(
+      d => d.severity === "info"
+    ).length;
+  }
