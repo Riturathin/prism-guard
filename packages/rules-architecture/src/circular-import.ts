@@ -1,6 +1,6 @@
 import path from "path"
-import type { Rule, RuleContext, Diagnostic } from "@prism-guard/core"
-import { createDiagnostic, findCycles } from "@prism-guard/core"
+import type { Rule, RuleContext, Diagnostic } from "@riturathinsharma/prism-guard-core"
+import { createDiagnostic, findCycles } from "@riturathinsharma/prism-guard-core"
 
 export const circularImportRule: Rule = {
   id: "circular-import",

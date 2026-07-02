@@ -1,6 +1,6 @@
 import nodePath from "path"
-import type { Rule, RuleContext, Diagnostic } from "@prism-guard/core"
-import { createDiagnostic } from "@prism-guard/core"
+import type { Rule, RuleContext, Diagnostic } from "@riturathinsharma/prism-guard-core"
+import { createDiagnostic } from "@riturathinsharma/prism-guard-core"
 import traverse from "@babel/traverse"
 import type { NodePath } from "@babel/traverse"
 import type { ImportDeclaration } from "@babel/types"

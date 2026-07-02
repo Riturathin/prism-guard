@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dynamicImportRule = void 0;
-const core_1 = require("@prism-guard/core");
+const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 const LAZY_CANDIDATES = ["Chart", "Editor", "Modal", "Dashboard", "Map", "Calendar"];
 exports.dynamicImportRule = {
@@ -28,7 +28,7 @@ exports.dynamicImportRule = {
                     return LAZY_CANDIDATES.some(c => name.includes(c));
                 });
                 if (hasLazyCandidate) {
-                    diagnostics.push((0, core_1.createDiagnostic)(exports.dynamicImportRule, context.file, path.node, "Large component imported statically — consider lazy loading", "Use React.lazy() with dynamic import() for code splitting"));
+                    diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.dynamicImportRule, context.file, path.node, "Large component imported statically — consider lazy loading", "Use React.lazy() with dynamic import() for code splitting"));
                 }
             }
         });

@@ -1,18 +1,48 @@
 {
-  "name": "@prism-guard/cli",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@prism-guard/core": "file:../core",
-    "@prism-guard/rules-react": "file:../rules-react",
-    "@prism-guard/rules-performance": "file:../rules-performance",
-    "@prism-guard/rules-architecture": "file:../rules-architecture"
+  "name": "@riturathinsharma/prism-guard",
+  "version": "1.0.0",
+  "description": "Frontend architecture intelligence platform for React and TypeScript",
+  "license": "MIT",
+  "author": "Ritumoni Sarma",
+  "homepage": "https://github.com/Riturathin/prism-guard",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Riturathin/prism-guard.git"
   },
+  "bugs": {
+    "url": "https://github.com/Riturathin/prism-guard/issues"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "architecture",
+    "performance",
+    "frontend",
+    "eslint",
+    "static-analysis",
+    "microfrontend",
+    "code-quality",
+    "prism-guard"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "bin": {
-    "prism-guard": "dist/index.js"
+    "prism-guard": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
-    "dev": "npx ts-node --project tsconfig.json src/index.ts"
+    "dev": "ts-node --project tsconfig.json src/index.ts"
+  },
+  "dependencies": {
+    "@riturathinsharma/prism-guard-core": "file:../core",
+    "@riturathinsharma/prism-guard-rules-react": "file:../rules-react",
+    "@riturathinsharma/prism-guard-rules-performance": "file:../rules-performance",
+    "@riturathinsharma/prism-guard-rules-architecture": "file:../rules-architecture"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -34,7 +34,7 @@ ${d.severity.toUpperCase()}
 `).join("");
     return `
 
-<details class="accordion" open>
+<details class="accordion">
 
 <summary>
 

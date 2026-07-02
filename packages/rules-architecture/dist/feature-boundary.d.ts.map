@@ -1,1 +1,1 @@
-{"version":3,"file":"feature-boundary.d.ts","sourceRoot":"","sources":["../src/feature-boundary.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,IAAI,EAA2B,MAAM,mBAAmB,CAAA;AAMtE,eAAO,MAAM,mBAAmB,EAAE,IAoCjC,CAAA"}
+{"version":3,"file":"feature-boundary.d.ts","sourceRoot":"","sources":["../src/feature-boundary.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,IAAI,EAA2B,MAAM,oCAAoC,CAAA;AAMvF,eAAO,MAAM,mBAAmB,EAAE,IAoCjC,CAAA"}

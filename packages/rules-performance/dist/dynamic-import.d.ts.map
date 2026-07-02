@@ -1,1 +1,1 @@
-{"version":3,"file":"dynamic-import.d.ts","sourceRoot":"","sources":["../src/dynamic-import.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAA2B,MAAM,mBAAmB,CAAA;AAQtE,eAAO,MAAM,iBAAiB,EAAE,IAsC/B,CAAA"}
+{"version":3,"file":"dynamic-import.d.ts","sourceRoot":"","sources":["../src/dynamic-import.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAA2B,MAAM,oCAAoC,CAAA;AAQvF,eAAO,MAAM,iBAAiB,EAAE,IAsC/B,CAAA"}

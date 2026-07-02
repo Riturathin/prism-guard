@@ -12,11 +12,11 @@ import {
   reportJson,
   reportHtml,
   reportSarif
-} from "@prism-guard/core";
+} from "@riturathinsharma/prism-guard-core";
 
-import { reactRules } from "@prism-guard/rules-react";
-import { performanceRules } from "@prism-guard/rules-performance";
-import { architectureRules } from "@prism-guard/rules-architecture";
+import { reactRules } from "@riturathinsharma/prism-guard-rules-react";
+import { performanceRules } from "@riturathinsharma/prism-guard-rules-performance";
+import { architectureRules } from "@riturathinsharma/prism-guard-rules-architecture";
 
 interface AnalyzeArgs {
   config?: string;

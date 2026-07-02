@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.circularImportRule = void 0;
 const path_1 = __importDefault(require("path"));
-const core_1 = require("@prism-guard/core");
+const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
 exports.circularImportRule = {
     id: "circular-import",
     name: "Circular Import",
@@ -14,7 +14,7 @@ exports.circularImportRule = {
     run(context) {
         if (!context.project)
             return [];
-        const cycles = (0, core_1.findCycles)(context.project.importGraph);
+        const cycles = (0, prism_guard_core_1.findCycles)(context.project.importGraph);
         const diagnostics = [];
         const seen = new Set();
         for (const cycle of cycles) {
@@ -24,7 +24,7 @@ exports.circularImportRule = {
             seen.add(key);
             if (!cycle.includes(path_1.default.resolve(context.file)))
                 continue;
-            diagnostics.push((0, core_1.createDiagnostic)(exports.circularImportRule, context.file, null, `Circular import detected: ${formatCycle(cycle)}`, "Refactor shared logic into a separate module to break the cycle"));
+            diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.circularImportRule, context.file, null, `Circular import detected: ${formatCycle(cycle)}`, "Refactor shared logic into a separate module to break the cycle"));
         }
         return diagnostics;
     }

@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.lazyImageRule = void 0;
-const core_1 = require("@prism-guard/core");
+const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 exports.lazyImageRule = {
     id: "lazy-image",
@@ -24,7 +24,7 @@ exports.lazyImageRule = {
                     attr.value?.type === "StringLiteral" &&
                     attr.value.value === "lazy");
                 if (!hasLazy) {
-                    diagnostics.push((0, core_1.createDiagnostic)(exports.lazyImageRule, context.file, path.node, "<img> without loading=\"lazy\"", "Add loading=\"lazy\" or use a lazy-loading image component"));
+                    diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.lazyImageRule, context.file, path.node, "<img> without loading=\"lazy\"", "Add loading=\"lazy\" or use a lazy-loading image component"));
                 }
             }
         });

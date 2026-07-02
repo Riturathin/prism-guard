@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.layerViolationRule = exports.dependencyDirectionRule = void 0;
 const path_1 = __importDefault(require("path"));
-const core_1 = require("@prism-guard/core");
+const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 const LAYER_ORDER = ["ui", "features", "shared", "data"];
 exports.dependencyDirectionRule = {
@@ -31,7 +31,7 @@ exports.dependencyDirectionRule = {
                     return;
                 const importRank = layers.indexOf(importLayer);
                 if (importRank < fileRank) {
-                    diagnostics.push((0, core_1.createDiagnostic)(exports.dependencyDirectionRule, context.file, path.node, `Layer violation: "${fileLayer}" imports from upper layer "${importLayer}"`, "Dependencies should flow downward (ui → features → shared → data)"));
+                    diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.dependencyDirectionRule, context.file, path.node, `Layer violation: "${fileLayer}" imports from upper layer "${importLayer}"`, "Dependencies should flow downward (ui → features → shared → data)"));
                 }
             }
         });

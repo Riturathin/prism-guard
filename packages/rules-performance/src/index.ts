@@ -1,4 +1,4 @@
-import type { Rule } from "@prism-guard/core"
+import type { Rule } from "@riturathinsharma/prism-guard-core"
 import { blockingImportRule } from "./blocking-import"
 import { dynamicImportRule } from "./dynamic-import"
 import { bundleBudgetRule } from "./bundle-budget"

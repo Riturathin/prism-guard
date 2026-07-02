@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.excessivePropsRule = void 0;
-const core_1 = require("@prism-guard/core");
+const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 exports.excessivePropsRule = {
     id: "excessive-props",
@@ -31,7 +31,7 @@ function checkProps(params, node, maxProps, context, diagnostics) {
         return;
     const propCount = countProps(first);
     if (propCount > maxProps) {
-        diagnostics.push((0, core_1.createDiagnostic)(exports.excessivePropsRule, context.file, node, `Component accepts ${propCount} props (max ${maxProps})`, "Group related props into objects or split the component"));
+        diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.excessivePropsRule, context.file, node, `Component accepts ${propCount} props (max ${maxProps})`, "Group related props into objects or split the component"));
     }
 }
 function countProps(pattern) {

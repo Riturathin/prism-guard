@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.nestedComponentRule = void 0;
-const core_1 = require("@prism-guard/core");
+const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 exports.nestedComponentRule = {
     id: "nested-component",
@@ -22,7 +22,7 @@ exports.nestedComponentRule = {
                         if (innerPath === outerPath)
                             return;
                         if (innerPath.node.id && /^[A-Z]/.test(innerPath.node.id.name)) {
-                            diagnostics.push((0, core_1.createDiagnostic)(exports.nestedComponentRule, context.file, innerPath.node, `Component "${innerPath.node.id.name}" defined inside "${outerPath.node.id?.name ?? "component"}"`, "Move nested components outside to prevent remounting on every parent render"));
+                            diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.nestedComponentRule, context.file, innerPath.node, `Component "${innerPath.node.id.name}" defined inside "${outerPath.node.id?.name ?? "component"}"`, "Move nested components outside to prevent remounting on every parent render"));
                         }
                     },
                     VariableDeclarator(innerPath) {
@@ -32,7 +32,7 @@ exports.nestedComponentRule = {
                             innerPath.node.id.type === "Identifier" &&
                             /^[A-Z]/.test(innerPath.node.id.name) &&
                             hasJSXInBody(init.body)) {
-                            diagnostics.push((0, core_1.createDiagnostic)(exports.nestedComponentRule, context.file, init, `Component "${innerPath.node.id.name}" defined inside "${outerPath.node.id?.name ?? "component"}"`, "Move nested components outside to prevent remounting on every parent render"));
+                            diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.nestedComponentRule, context.file, init, `Component "${innerPath.node.id.name}" defined inside "${outerPath.node.id?.name ?? "component"}"`, "Move nested components outside to prevent remounting on every parent render"));
                         }
                     }
                 });

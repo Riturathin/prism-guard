@@ -1,14 +1,41 @@
 {
-  "name": "@prism-guard/rules-architecture",
-  "version": "0.1.0",
-  "private": true,
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "@riturathinsharma/prism-guard-rules-architecture",
+  "version": "1.0.0",
+  "description": "Official architecture rule pack for Prism Guard",
+  "license": "MIT",
+  "author": "Ritumoni Sarma",
+  "homepage": "https://github.com/Riturathin/prism-guard",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Riturathin/prism-guard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Riturathin/prism-guard/issues"
+  },
+  "keywords": [
+    "architecture",
+    "react",
+    "typescript",
+    "static-analysis",
+    "code-quality",
+    "prism-guard"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
-    "@prism-guard/core": "file:../core",
+    "@riturathinsharma/prism-guard-core": "file:../core",
     "@babel/traverse": "^7.29.0",
     "@babel/types": "^7.29.0"
   },
