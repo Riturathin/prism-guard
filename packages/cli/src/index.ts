@@ -131,10 +131,19 @@ async function runAnalyze(args: AnalyzeArgs): Promise<number> {
       console.log(output);
     }
   } else if (args.html) {
+    // const output = reportHtml(result);
+
+    // const outPath =
+    //   args.output ?? path.join(root, "prism-report.html");
+
     const output = reportHtml(result);
 
-    const outPath =
-      args.output ?? path.join(root, "prism-report.html");
+console.log(output.substring(0, 300));
+
+const outPath =
+  args.output ?? path.join(root, "prism-report.html");
+
+fs.writeFileSync(outPath, output, "utf8");
 
     fs.writeFileSync(outPath, output, "utf8");
 

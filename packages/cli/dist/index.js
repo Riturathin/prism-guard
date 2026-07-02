@@ -88,8 +88,13 @@ async function runAnalyze(args) {
         }
     }
     else if (args.html) {
+        // const output = reportHtml(result);
+        // const outPath =
+        //   args.output ?? path.join(root, "prism-report.html");
         const output = (0, core_1.reportHtml)(result);
+        console.log(output.substring(0, 300));
         const outPath = args.output ?? path_1.default.join(root, "prism-report.html");
+        fs_1.default.writeFileSync(outPath, output, "utf8");
         fs_1.default.writeFileSync(outPath, output, "utf8");
         console.log(`✔ HTML report written to ${outPath}`);
     }
