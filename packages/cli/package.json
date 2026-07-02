@@ -1,6 +1,6 @@
 {
   "name": "@riturathinsharma/prism-guard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Frontend architecture intelligence platform for React and TypeScript",
   "license": "MIT",
   "author": "Ritumoni Sarma",
@@ -30,17 +30,11 @@
     "dist"
   ],
   "bin": {
-    "prism-guard": "./dist/index.js"
+    "prism-guard": "dist/index.js"
   },
   "scripts": {
     "build": "node build.js",
     "dev": "ts-node --project tsconfig.json src/index.ts"
-  },
-  "dependencies": {
-    "@riturathinsharma/prism-guard-core": "file:../core",
-    "@riturathinsharma/prism-guard-rules-react": "file:../rules-react",
-    "@riturathinsharma/prism-guard-rules-performance": "file:../rules-performance",
-    "@riturathinsharma/prism-guard-rules-architecture": "file:../rules-architecture"
   },
   "publishConfig": {
     "access": "public"

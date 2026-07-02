@@ -44124,10 +44124,8 @@ var require_analyzer = __commonJS({
     function analyze2(options) {
       const start = Date.now();
       const root = path_1.default.resolve(options.root ?? process.cwd());
-      console.log("Analyzer root:", root);
       const config = { ...options.config, root };
       const allFiles = (0, files_1.discoverFiles)(root, config);
-      console.log("Files discovered:", allFiles.length);
       console.log(allFiles.slice(0, 5));
       const sourceFiles = allFiles.filter(ast_1.isSourceFile);
       const importGraph = (0, import_graph_1.buildImportGraph)(sourceFiles, root);
@@ -47778,7 +47776,6 @@ async function runAnalyze(args) {
     }
   } else if (args.html) {
     const output = (0, import_prism_guard_core.reportHtml)(result);
-    console.log(output.substring(0, 300));
     const outPath = args.output ?? import_path.default.join(root, "prism-report.html");
     import_fs.default.writeFileSync(outPath, output, "utf8");
     import_fs.default.writeFileSync(outPath, output, "utf8");
