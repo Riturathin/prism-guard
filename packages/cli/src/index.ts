@@ -94,11 +94,16 @@ function createRegistry(): RuleRegistry {
 async function runAnalyze(args: AnalyzeArgs): Promise<number> {
   const root = path.resolve(args.cwd ?? process.cwd());
 
-  const configPath = args.config
-    ? path.resolve(args.config)
-    : path.join(root, "prism.config.json");
+  const previousCwd = process.cwd();
 
-  const config = loadConfig(configPath);
+  process.chdir(root);
+
+  const config = args.config
+    ? loadConfig(path.resolve(args.config))
+    : loadConfig();
+
+  process.chdir(previousCwd);
+
   config.root = root;
 
   const warnings = validateConfig(config);
@@ -138,7 +143,6 @@ async function runAnalyze(args: AnalyzeArgs): Promise<number> {
 
     const output = reportHtml(result);
 
-console.log(output.substring(0, 300));
 
 const outPath =
   args.output ?? path.join(root, "prism-report.html");

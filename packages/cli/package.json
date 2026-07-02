@@ -33,7 +33,7 @@
     "prism-guard": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "node build.js",
     "dev": "ts-node --project tsconfig.json src/index.ts"
   },
   "dependencies": {

@@ -1,140 +1,245 @@
 # Prism Guard
 
-**Prism Guard** is an AST-powered static analysis platform for React applications. It focuses on architecture, performance, maintainability, and engineering best practices — complementing (not replacing) ESLint and Prettier.
+<p align="center">
+
+**Frontend Architecture Intelligence Platform for React & TypeScript**
+
+Analyze architectural quality, React anti-patterns, performance bottlenecks and code health with a single command.
+
+</p>
+
+---
+
+## Features
+
+- 🏗️ Frontend Architecture Analysis
+- ⚛️ React Best Practices
+- ⚡ Performance Anti-pattern Detection
+- 📊 Architecture Quality Score (0–100)
+- 📄 Interactive HTML Dashboard
+- 📦 JSON Reporter
+- 🛡️ SARIF Export
+- 💻 Rich CLI Output
+- 🚀 Zero Configuration
+
+---
+
+## Installation
+
+```bash
+npm install -D @riturathinsharma/prism-guard
+```
+
+or
+
+```bash
+npx @riturathinsharma/prism-guard analyze
+```
+
+---
+
+# Quick Start
+
+Analyze your project
+
+```bash
+npx prism-guard analyze
+```
+
+Generate an interactive HTML report
+
+```bash
+npx prism-guard analyze --html
+```
+
+Generate JSON
+
+```bash
+npx prism-guard analyze --json
+```
+
+Generate SARIF
+
+```bash
+npx prism-guard analyze --sarif
+```
+
+---
+
+# Sample Output
+
+```
+═══════════════════════════════════════
+              Prism Guard
+═══════════════════════════════════════
+
+Score          : 88/100
+Files          : 245
+Rules          : 21
+Errors         : 2
+Warnings       : 14
+Info           : 7
+
+═══════════════════════════════════════
+
+Top Rules
+
+• no-inline-callback
+• expensive-render
+• circular-import
+
+Worst Files
+
+78/100  Dashboard.tsx
+84/100  UserList.tsx
+
+Recommendations
+
+✔ Memoize expensive renders
+✔ Break circular imports
+✔ Replace array index keys
+```
+
+---
+
+# Interactive HTML Report
+
+Generate a beautiful interactive dashboard.
+
+```bash
+npx prism-guard analyze --html
+```
+
+Includes
+
+- Architecture Score
+- Rule Distribution
+- Worst Files
+- Searchable Issues
+- Pagination
+- Recommendations
+- File Scores
+- Dashboard Cards
+
+---
+
+# Rules
+
+## React
+
+- No Inline Callback
+- No Array Index Key
+- Nested Components
+- Excessive useEffect
+- Large Components
+- Anonymous Components
+- Unstable Context
+
+---
+
+## Performance
+
+- Blocking Imports
+- Dynamic Import Suggestions
+- Lazy Images
+- Bundle Budget
+- Expensive Render Detection
+
+---
 
 ## Architecture
 
+- Circular Imports
+- Feature Boundaries
+- Folder Boundaries
+- Dependency Direction
+- Component Complexity
+- Excessive Props
+- Duplicate Hooks
+- Cognitive Complexity
+
+---
+
+# CLI
+
 ```
-CLI → Analyzer Engine → Framework Detector → Rule Registry → AST Traversal → Diagnostics → Reporters
-```
-
-## Quick Start
-
-```bash
-# Install dependencies
-npm install
-
-# Build all packages
-npm run build
-
-# Analyze the sample fixture project
-npm run analyze:fixture
-
-# Analyze current directory
-npm run analyze
-
-# Output formats
-npm run analyze:json
-npm run analyze:html
-node packages/cli/dist/index.js analyze --sarif --cwd fixtures/sample-react
-```
-
-## CLI Usage
-
-```bash
 prism-guard analyze
-prism-guard analyze --json
-prism-guard analyze --html
-prism-guard analyze --sarif
-prism-guard analyze --config prism.config.json
-prism-guard analyze --cwd ./my-react-app --verbose
+
+Options
+
+--html
+--json
+--sarif
+--config
+--output
+--cwd
+--verbose
 ```
 
-## Package Structure
+---
+
+# Example
 
 ```
-packages/
-  cli/                  Command-line interface
-  core/                 Analyzer engine, registry, reporters, types
-  config/               Config helpers (defineConfig)
-  rules-react/          React-specific rules
-  rules-performance/    Performance rules
-  rules-architecture/   Architecture & maintainability rules
-fixtures/
-  sample-react/         Example project with intentional violations
+npx prism-guard analyze --html
 ```
 
-## Configuration
+Creates
 
-Create `prism.config.json` in your project root:
-
-```json
-{
-  "react": {
-    "maxProps": 7,
-    "maxComponentLines": 250,
-    "maxHooks": 5,
-    "maxUseEffects": 3
-  },
-  "performance": {
-    "bundleBudgetKb": 500,
-    "heavyImports": ["lodash", "moment"]
-  },
-  "rules": {
-    "no-inline-callback": "warn",
-    "circular-import": "error"
-  }
-}
+```
+prism-report.html
 ```
 
-Or use TypeScript config via `prism.config.ts` with `@prism-guard/config`:
+---
 
-```ts
-import { defineConfig } from "@prism-guard/config"
+# Roadmap
 
-export default defineConfig({
-  rules: { "no-array-index-key": "error" }
-})
-```
+- [x] React Rules
+- [x] Performance Rules
+- [x] Architecture Rules
+- [x] HTML Dashboard
+- [x] JSON Reporter
+- [x] SARIF Reporter
+- [x] Scoring Engine
+- [ ] Auto Fixes
+- [ ] VS Code Extension
+- [ ] GitHub Action
+- [ ] AI-Powered Fix Suggestions
+- [ ] Custom Rule SDK
 
-## Rules
+---
 
-| Category | Rule | Description |
-|----------|------|-------------|
-| React | no-inline-callback | Inline functions in JSX attributes |
-| React | no-array-index-key | Array index used as React key |
-| React | no-anonymous-component | Unnamed components |
-| React | no-large-component | Components exceeding line limit |
-| React | excessive-useeffect | Too many useEffect calls |
-| React | nested-component | Components defined inside components |
-| React | unstable-context | Inline context provider values |
-| Performance | blocking-import | Heavy synchronous imports |
-| Performance | dynamic-import | Suggest lazy loading |
-| Performance | bundle-budget | File size exceeds budget |
-| Performance | lazy-image | img without loading="lazy" |
-| Performance | expensive-render | .map() in JSX without memoization |
-| Architecture | circular-import | Circular dependency detection |
-| Architecture | feature-boundary | Cross-feature imports |
-| Architecture | dependency-direction | Layer dependency violations |
-| Architecture | folder-boundary | Non-standard folder placement |
-| Maintainability | excessive-props | Too many component props |
-| Maintainability | duplicate-hooks | Repeated hook calls |
-| Maintainability | cognitive-complexity | High branching complexity |
-| Maintainability | component-complexity | Hook/JSX depth limits |
+# Why Prism Guard?
 
-## Plugin Architecture
+Traditional linters answer:
 
-Rules implement the `Rule` interface from `@prism-guard/core`:
+> "Is this code syntactically correct?"
 
-```ts
-interface Rule {
-  id: string
-  name: string
-  category: string
-  severity: Severity
-  run(context: RuleContext): Diagnostic[]
-}
-```
+Prism Guard answers:
 
-Register custom rules via `RuleRegistry`:
+- Is this component becoming too complex?
+- Are React best practices being followed?
+- Are architectural boundaries respected?
+- Which files are hurting maintainability?
+- Where are performance bottlenecks?
+- What should the team fix first?
 
-```ts
-import { RuleRegistry } from "@prism-guard/core"
+---
 
-const registry = new RuleRegistry()
-registry.register(myCustomRule)
-```
-
-## License
+# License
 
 MIT
+
+---
+
+# Author
+
+**Ritumoni Sarma**
+
+GitHub
+
+https://github.com/Riturathin
+
+---
+
+⭐ If Prism Guard helps improve your codebase, consider starring the repository.
