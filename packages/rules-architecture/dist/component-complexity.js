@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.componentComplexityRule = void 0;
-const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
+const core_1 = require("@prism-guard/core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 exports.componentComplexityRule = {
     id: "component-complexity",
@@ -38,10 +38,10 @@ function checkComponent(name, body, node, maxHooks, context, diagnostics) {
     const jsxDepth = estimateJsxDepth(body);
     const maxDepth = context.config.react?.maxJSXDepth ?? 4;
     if (hookCount > maxHooks) {
-        diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.componentComplexityRule, context.file, node, `Component "${name}" uses ${hookCount} hooks (max ${maxHooks})`, "Extract logic into custom hooks or split the component"));
+        diagnostics.push((0, core_1.createDiagnostic)(exports.componentComplexityRule, context.file, node, `Component "${name}" uses ${hookCount} hooks (max ${maxHooks})`, "Extract logic into custom hooks or split the component"));
     }
     if (jsxDepth > maxDepth) {
-        diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.componentComplexityRule, context.file, node, `Component "${name}" has JSX nesting depth ${jsxDepth} (max ${maxDepth})`, "Extract nested JSX into sub-components"));
+        diagnostics.push((0, core_1.createDiagnostic)(exports.componentComplexityRule, context.file, node, `Component "${name}" has JSX nesting depth ${jsxDepth} (max ${maxDepth})`, "Extract nested JSX into sub-components"));
     }
 }
 function estimateJsxDepth(body) {

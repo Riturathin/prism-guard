@@ -1,5 +1,5 @@
 {
-  "name": "@riturathinsharma/prism-guard-rules-react",
+  "name": "@prism-guard/rules-react",
   "version": "1.0.0",
   "description": "Official React rule pack for Prism Guard",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@riturathinsharma/prism-guard-core": "file:../core",
+    "@prism-guard/core": "file:../core",
     "@babel/traverse": "^7.29.0",
     "@babel/types": "^7.29.0"
   },

@@ -1,1 +1,1 @@
-{"version":3,"file":"lazy-image.d.ts","sourceRoot":"","sources":["../src/lazy-image.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAA2B,MAAM,oCAAoC,CAAA;AAMvF,eAAO,MAAM,aAAa,EAAE,IAsC3B,CAAA"}
+{"version":3,"file":"lazy-image.d.ts","sourceRoot":"","sources":["../src/lazy-image.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAA2B,MAAM,mBAAmB,CAAA;AAMtE,eAAO,MAAM,aAAa,EAAE,IAsC3B,CAAA"}

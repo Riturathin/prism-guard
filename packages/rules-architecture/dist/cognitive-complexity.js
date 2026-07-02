@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cognitiveComplexityRule = void 0;
-const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
+const core_1 = require("@prism-guard/core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 const COMPLEXITY_THRESHOLD = 15;
 exports.cognitiveComplexityRule = {
@@ -18,13 +18,13 @@ exports.cognitiveComplexityRule = {
             FunctionDeclaration(path) {
                 const complexity = measureComplexity(path.node.body);
                 if (complexity > COMPLEXITY_THRESHOLD) {
-                    diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.cognitiveComplexityRule, context.file, path.node, `Function "${path.node.id?.name ?? "anonymous"}" has cognitive complexity ${complexity}`, "Reduce branching, extract helpers, or split into smaller functions"));
+                    diagnostics.push((0, core_1.createDiagnostic)(exports.cognitiveComplexityRule, context.file, path.node, `Function "${path.node.id?.name ?? "anonymous"}" has cognitive complexity ${complexity}`, "Reduce branching, extract helpers, or split into smaller functions"));
                 }
             },
             ArrowFunctionExpression(path) {
                 const complexity = measureComplexity(path.node.body);
                 if (complexity > COMPLEXITY_THRESHOLD) {
-                    diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.cognitiveComplexityRule, context.file, path.node, `Arrow function has cognitive complexity ${complexity}`, "Reduce branching, extract helpers, or split into smaller functions"));
+                    diagnostics.push((0, core_1.createDiagnostic)(exports.cognitiveComplexityRule, context.file, path.node, `Arrow function has cognitive complexity ${complexity}`, "Reduce branching, extract helpers, or split into smaller functions"));
                 }
             }
         });

@@ -1,1 +1,1 @@
-{"version":3,"file":"cognitive-complexity.d.ts","sourceRoot":"","sources":["../src/cognitive-complexity.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAA2B,MAAM,oCAAoC,CAAA;AAQvF,eAAO,MAAM,uBAAuB,EAAE,IAyCrC,CAAA"}
+{"version":3,"file":"cognitive-complexity.d.ts","sourceRoot":"","sources":["../src/cognitive-complexity.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAA2B,MAAM,mBAAmB,CAAA;AAQtE,eAAO,MAAM,uBAAuB,EAAE,IAyCrC,CAAA"}

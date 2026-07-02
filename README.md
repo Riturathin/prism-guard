@@ -123,6 +123,14 @@ Includes
 
 ---
 
+## Interactive HTML Dashboard
+
+![Dashboard](assets/ring-centric-view.png)
+
+## Search, Sort & Pagination
+
+![Issues](assets/realtime-issue-list.png)
+
 # Rules
 
 ## React

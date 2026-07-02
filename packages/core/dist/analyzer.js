@@ -12,8 +12,10 @@ const import_graph_1 = require("./import-graph");
 function analyze(options) {
     const start = Date.now();
     const root = path_1.default.resolve(options.root ?? process.cwd());
+    console.log("Analyzer root:", root);
     const config = { ...options.config, root };
     const allFiles = (0, files_1.discoverFiles)(root, config);
+    console.log("Files discovered:", allFiles.length);
     console.log(allFiles.slice(0, 5));
     const sourceFiles = allFiles.filter(ast_1.isSourceFile);
     const importGraph = (0, import_graph_1.buildImportGraph)(sourceFiles, root);

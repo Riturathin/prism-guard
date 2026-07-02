@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.noAnonymousComponentRule = void 0;
-const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
+const core_1 = require("@prism-guard/core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 exports.noAnonymousComponentRule = {
     id: "no-anonymous-component",
@@ -17,10 +17,10 @@ exports.noAnonymousComponentRule = {
             ExportDefaultDeclaration(path) {
                 const decl = path.node.declaration;
                 if (decl.type === "FunctionExpression" && !decl.id) {
-                    diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.noAnonymousComponentRule, context.file, decl, "Anonymous default-exported component", "Name your component for better debugging and DevTools support"));
+                    diagnostics.push((0, core_1.createDiagnostic)(exports.noAnonymousComponentRule, context.file, decl, "Anonymous default-exported component", "Name your component for better debugging and DevTools support"));
                 }
                 if (decl.type === "FunctionDeclaration" && !decl.id) {
-                    diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.noAnonymousComponentRule, context.file, decl, "Anonymous default-exported component", "Name your component for better debugging and DevTools support"));
+                    diagnostics.push((0, core_1.createDiagnostic)(exports.noAnonymousComponentRule, context.file, decl, "Anonymous default-exported component", "Name your component for better debugging and DevTools support"));
                 }
             },
             JSXExpressionContainer(path) {
@@ -28,7 +28,7 @@ exports.noAnonymousComponentRule = {
                 if ((expr.type === "ArrowFunctionExpression" || expr.type === "FunctionExpression") &&
                     (expr.type === "FunctionExpression" ? !expr.id : true) &&
                     hasJSXReturn(expr.body)) {
-                    diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.noAnonymousComponentRule, context.file, expr, "Anonymous inline component in JSX", "Extract inline components to named functions or separate files"));
+                    diagnostics.push((0, core_1.createDiagnostic)(exports.noAnonymousComponentRule, context.file, expr, "Anonymous inline component in JSX", "Extract inline components to named functions or separate files"));
                 }
             }
         });

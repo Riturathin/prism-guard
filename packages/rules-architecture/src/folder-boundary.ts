@@ -1,6 +1,6 @@
 import path from "path"
-import type { Rule, RuleContext, Diagnostic } from "@riturathinsharma/prism-guard-core"
-import { createDiagnostic } from "@riturathinsharma/prism-guard-core"
+import type { Rule, RuleContext, Diagnostic } from "@prism-guard/core"
+import { createDiagnostic } from "@prism-guard/core"
 
 const ALLOWED_ROOTS = ["src", "app", "components", "features", "pages", "lib", "hooks", "utils"]
 

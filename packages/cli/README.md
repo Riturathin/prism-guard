@@ -27,13 +27,13 @@ Analyze architectural quality, React anti-patterns, performance bottlenecks and 
 ## Installation
 
 ```bash
-npm install -D @riturathinsharma/prism-guard
+npm install -D @prism-guard/cli
 ```
 
 or
 
 ```bash
-npx @riturathinsharma/prism-guard analyze
+npx @prism-guard/cli analyze
 ```
 
 ---

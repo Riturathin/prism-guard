@@ -1,1 +1,1 @@
-{"version":3,"file":"blocking-import.d.ts","sourceRoot":"","sources":["../src/blocking-import.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAA2B,MAAM,oCAAoC,CAAA;AAMvF,eAAO,MAAM,kBAAkB,EAAE,IA6BhC,CAAA"}
+{"version":3,"file":"blocking-import.d.ts","sourceRoot":"","sources":["../src/blocking-import.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAA2B,MAAM,mBAAmB,CAAA;AAMtE,eAAO,MAAM,kBAAkB,EAAE,IA6BhC,CAAA"}

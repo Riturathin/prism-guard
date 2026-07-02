@@ -1,5 +1,5 @@
 {
-  "name": "@riturathinsharma/prism-guard",
+  "name": "@prism-guard/cli",
   "version": "1.0.1",
   "description": "Frontend architecture intelligence platform for React and TypeScript",
   "license": "MIT",

@@ -2,21 +2,22 @@
 
 import fs from "fs";
 import path from "path";
+
 import {
+  analyze,
   loadConfig,
   validateConfig,
-  analyze,
   RuleRegistry,
   shouldFail,
   reportConsole,
   reportJson,
   reportHtml,
   reportSarif
-} from "@riturathinsharma/prism-guard-core";
+} from "@prism-guard/core";
 
-import { reactRules } from "@riturathinsharma/prism-guard-rules-react";
-import { performanceRules } from "@riturathinsharma/prism-guard-rules-performance";
-import { architectureRules } from "@riturathinsharma/prism-guard-rules-architecture";
+import { reactRules } from "@prism-guard/rules-react";
+import { performanceRules } from "@prism-guard/rules-performance";
+import { architectureRules } from "@prism-guard/rules-architecture";
 
 interface AnalyzeArgs {
   config?: string;
@@ -94,6 +95,7 @@ function createRegistry(): RuleRegistry {
 async function runAnalyze(args: AnalyzeArgs): Promise<number> {
   const root = path.resolve(args.cwd ?? process.cwd());
 
+  // Load configuration relative to the project root
   const previousCwd = process.cwd();
 
   process.chdir(root);
@@ -135,23 +137,17 @@ async function runAnalyze(args: AnalyzeArgs): Promise<number> {
     } else {
       console.log(output);
     }
+
   } else if (args.html) {
-    // const output = reportHtml(result);
-
-    // const outPath =
-    //   args.output ?? path.join(root, "prism-report.html");
-
     const output = reportHtml(result);
 
-
-const outPath =
-  args.output ?? path.join(root, "prism-report.html");
-
-fs.writeFileSync(outPath, output, "utf8");
+    const outPath =
+      args.output ?? path.join(root, "prism-report.html");
 
     fs.writeFileSync(outPath, output, "utf8");
 
     console.log(`✔ HTML report written to ${outPath}`);
+
   } else if (args.sarif) {
     const output = reportSarif(result);
 
@@ -161,6 +157,7 @@ fs.writeFileSync(outPath, output, "utf8");
     fs.writeFileSync(outPath, output, "utf8");
 
     console.log(`✔ SARIF report written to ${outPath}`);
+
   } else {
     reportConsole(result, {
       verbose: args.verbose
@@ -189,7 +186,7 @@ Options
   --sarif             SARIF report
   --output <path>     Output file
   --verbose           Detailed console output
-  -h, --help          Help
+  -h, --help          Show help
 `);
 }
 
@@ -213,7 +210,6 @@ async function main(): Promise<void> {
       console.error(`Unknown command "${command}"`);
       printHelp();
       process.exitCode = 1;
-      return;
   }
 }
 

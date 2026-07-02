@@ -1,4 +1,4 @@
-import type { Rule } from "@riturathinsharma/prism-guard-core";
+import type { Rule } from "@prism-guard/core";
 import { circularImportRule } from "./circular-import";
 import { featureBoundaryRule } from "./feature-boundary";
 import { dependencyDirectionRule, layerViolationRule } from "./dependency-direction";

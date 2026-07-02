@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.duplicateHooksRule = void 0;
-const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
+const core_1 = require("@prism-guard/core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 exports.duplicateHooksRule = {
     id: "duplicate-hooks",
@@ -30,7 +30,7 @@ exports.duplicateHooksRule = {
         });
         for (const [hook, { count, node }] of hookCounts) {
             if (count > 1) {
-                diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.duplicateHooksRule, context.file, node, `Hook "${hook}" called ${count} times in the same component`, "Extract shared hook logic into a custom hook"));
+                diagnostics.push((0, core_1.createDiagnostic)(exports.duplicateHooksRule, context.file, node, `Hook "${hook}" called ${count} times in the same component`, "Extract shared hook logic into a custom hook"));
             }
         }
         return diagnostics;

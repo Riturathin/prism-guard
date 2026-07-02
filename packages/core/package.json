@@ -1,5 +1,5 @@
 {
-  "name": "@riturathinsharma/prism-guard-core",
+  "name": "@prism-guard/core",
   "version": "1.0.0",
   "description": "Core analysis engine for Prism Guard",
   "license": "MIT",

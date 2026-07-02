@@ -1,4 +1,4 @@
-import type { Rule } from "@riturathinsharma/prism-guard-core"
+import type { Rule } from "@prism-guard/core"
 import { noInlineCallbackRule } from "./no-inline-callback"
 import { noArrayIndexKeyRule } from "./no-array-index-key"
 import { noAnonymousComponentRule } from "./no-anonymous-component"

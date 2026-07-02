@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.excessiveUseEffectRule = void 0;
-const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
+const core_1 = require("@prism-guard/core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 exports.excessiveUseEffectRule = {
     id: "excessive-useeffect",
@@ -32,7 +32,7 @@ exports.excessiveUseEffectRule = {
         });
         for (const [component, { count, node }] of componentEffects) {
             if (count > maxEffects) {
-                diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.excessiveUseEffectRule, context.file, node, `Component "${component}" has ${count} useEffect calls (max ${maxEffects})`, "Consolidate effects, derive state, or extract custom hooks"));
+                diagnostics.push((0, core_1.createDiagnostic)(exports.excessiveUseEffectRule, context.file, node, `Component "${component}" has ${count} useEffect calls (max ${maxEffects})`, "Consolidate effects, derive state, or extract custom hooks"));
             }
         }
         return diagnostics;

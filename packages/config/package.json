@@ -1,5 +1,5 @@
 {
-  "name": "@riturathinsharma/prism-guard-config",
+  "name": "@prism-guard/config",
   "version": "1.0.0",
   "description": "Configuration utilities for Prism Guard",
   "license": "MIT",
@@ -34,6 +34,6 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@riturathinsharma/prism-guard-core": "file:../core"
+    "@prism-guard/core": "file:../core"
   }
 }

@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.noLargeComponentRule = void 0;
-const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
+const core_1 = require("@prism-guard/core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 exports.noLargeComponentRule = {
     id: "no-large-component",
@@ -51,6 +51,6 @@ function checkSize(node, reportNode, maxLines, context, diagnostics) {
     const end = node.loc?.end.line ?? 0;
     const lineCount = end - start + 1;
     if (lineCount > maxLines) {
-        diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.noLargeComponentRule, context.file, reportNode, `Component spans ${lineCount} lines (max ${maxLines})`, "Split into smaller focused components or extract hooks and utilities"));
+        diagnostics.push((0, core_1.createDiagnostic)(exports.noLargeComponentRule, context.file, reportNode, `Component spans ${lineCount} lines (max ${maxLines})`, "Split into smaller focused components or extract hooks and utilities"));
     }
 }

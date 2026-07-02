@@ -44124,8 +44124,10 @@ var require_analyzer = __commonJS({
     function analyze2(options) {
       const start = Date.now();
       const root = path_1.default.resolve(options.root ?? process.cwd());
+      console.log("Analyzer root:", root);
       const config = { ...options.config, root };
       const allFiles = (0, files_1.discoverFiles)(root, config);
+      console.log("Files discovered:", allFiles.length);
       console.log(allFiles.slice(0, 5));
       const sourceFiles = allFiles.filter(ast_1.isSourceFile);
       const importGraph = (0, import_graph_1.buildImportGraph)(sourceFiles, root);
@@ -46618,7 +46620,7 @@ var require_no_inline_callback = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.noInlineCallbackRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.noInlineCallbackRule = {
       id: "no-inline-callback",
@@ -46634,7 +46636,7 @@ var require_no_inline_callback = __commonJS({
               return;
             const expr = value.expression;
             if (expr.type === "ArrowFunctionExpression" || expr.type === "FunctionExpression") {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.noInlineCallbackRule, context.file, expr, "Inline callback in JSX attribute causes unnecessary re-renders", "Extract the callback to useCallback or a named handler outside JSX"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.noInlineCallbackRule, context.file, expr, "Inline callback in JSX attribute causes unnecessary re-renders", "Extract the callback to useCallback or a named handler outside JSX"));
             }
           }
         });
@@ -46653,7 +46655,7 @@ var require_no_array_index_key = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.noArrayIndexKeyRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     var INDEX_NAMES = /* @__PURE__ */ new Set(["index", "i", "idx", "key"]);
     exports2.noArrayIndexKeyRule = {
@@ -46672,11 +46674,11 @@ var require_no_array_index_key = __commonJS({
               return;
             const expr = value.expression;
             if (expr.type === "Identifier" && INDEX_NAMES.has(expr.name)) {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.noArrayIndexKeyRule, context.file, expr, `Array index "${expr.name}" used as React key`, "Use a stable unique identifier from your data instead of array index"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.noArrayIndexKeyRule, context.file, expr, `Array index "${expr.name}" used as React key`, "Use a stable unique identifier from your data instead of array index"));
             }
             if (expr.type === "MemberExpression" && expr.property.type === "Identifier") {
               if (INDEX_NAMES.has(expr.property.name)) {
-                diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.noArrayIndexKeyRule, context.file, expr, "Array index used as React key", "Use a stable unique identifier from your data instead of array index"));
+                diagnostics.push((0, core_1.createDiagnostic)(exports2.noArrayIndexKeyRule, context.file, expr, "Array index used as React key", "Use a stable unique identifier from your data instead of array index"));
               }
             }
           }
@@ -46696,7 +46698,7 @@ var require_no_anonymous_component = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.noAnonymousComponentRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.noAnonymousComponentRule = {
       id: "no-anonymous-component",
@@ -46709,16 +46711,16 @@ var require_no_anonymous_component = __commonJS({
           ExportDefaultDeclaration(path2) {
             const decl = path2.node.declaration;
             if (decl.type === "FunctionExpression" && !decl.id) {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.noAnonymousComponentRule, context.file, decl, "Anonymous default-exported component", "Name your component for better debugging and DevTools support"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.noAnonymousComponentRule, context.file, decl, "Anonymous default-exported component", "Name your component for better debugging and DevTools support"));
             }
             if (decl.type === "FunctionDeclaration" && !decl.id) {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.noAnonymousComponentRule, context.file, decl, "Anonymous default-exported component", "Name your component for better debugging and DevTools support"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.noAnonymousComponentRule, context.file, decl, "Anonymous default-exported component", "Name your component for better debugging and DevTools support"));
             }
           },
           JSXExpressionContainer(path2) {
             const expr = path2.node.expression;
             if ((expr.type === "ArrowFunctionExpression" || expr.type === "FunctionExpression") && (expr.type === "FunctionExpression" ? !expr.id : true) && hasJSXReturn(expr.body)) {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.noAnonymousComponentRule, context.file, expr, "Anonymous inline component in JSX", "Extract inline components to named functions or separate files"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.noAnonymousComponentRule, context.file, expr, "Anonymous inline component in JSX", "Extract inline components to named functions or separate files"));
             }
           }
         });
@@ -46748,7 +46750,7 @@ var require_no_large_component = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.noLargeComponentRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.noLargeComponentRule = {
       id: "no-large-component",
@@ -46793,7 +46795,7 @@ var require_no_large_component = __commonJS({
       const end = node.loc?.end.line ?? 0;
       const lineCount = end - start + 1;
       if (lineCount > maxLines) {
-        diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.noLargeComponentRule, context.file, reportNode, `Component spans ${lineCount} lines (max ${maxLines})`, "Split into smaller focused components or extract hooks and utilities"));
+        diagnostics.push((0, core_1.createDiagnostic)(exports2.noLargeComponentRule, context.file, reportNode, `Component spans ${lineCount} lines (max ${maxLines})`, "Split into smaller focused components or extract hooks and utilities"));
       }
     }
   }
@@ -46808,7 +46810,7 @@ var require_excessive_useeffect = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.excessiveUseEffectRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.excessiveUseEffectRule = {
       id: "excessive-useeffect",
@@ -46835,7 +46837,7 @@ var require_excessive_useeffect = __commonJS({
         });
         for (const [component, { count, node }] of componentEffects) {
           if (count > maxEffects) {
-            diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.excessiveUseEffectRule, context.file, node, `Component "${component}" has ${count} useEffect calls (max ${maxEffects})`, "Consolidate effects, derive state, or extract custom hooks"));
+            diagnostics.push((0, core_1.createDiagnostic)(exports2.excessiveUseEffectRule, context.file, node, `Component "${component}" has ${count} useEffect calls (max ${maxEffects})`, "Consolidate effects, derive state, or extract custom hooks"));
           }
         }
         return diagnostics;
@@ -46869,7 +46871,7 @@ var require_nested_component = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.nestedComponentRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.nestedComponentRule = {
       id: "nested-component",
@@ -46887,13 +46889,13 @@ var require_nested_component = __commonJS({
                 if (innerPath === outerPath)
                   return;
                 if (innerPath.node.id && /^[A-Z]/.test(innerPath.node.id.name)) {
-                  diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.nestedComponentRule, context.file, innerPath.node, `Component "${innerPath.node.id.name}" defined inside "${outerPath.node.id?.name ?? "component"}"`, "Move nested components outside to prevent remounting on every parent render"));
+                  diagnostics.push((0, core_1.createDiagnostic)(exports2.nestedComponentRule, context.file, innerPath.node, `Component "${innerPath.node.id.name}" defined inside "${outerPath.node.id?.name ?? "component"}"`, "Move nested components outside to prevent remounting on every parent render"));
                 }
               },
               VariableDeclarator(innerPath) {
                 const init = innerPath.node.init;
                 if (init && (init.type === "ArrowFunctionExpression" || init.type === "FunctionExpression") && innerPath.node.id.type === "Identifier" && /^[A-Z]/.test(innerPath.node.id.name) && hasJSXInBody(init.body)) {
-                  diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.nestedComponentRule, context.file, init, `Component "${innerPath.node.id.name}" defined inside "${outerPath.node.id?.name ?? "component"}"`, "Move nested components outside to prevent remounting on every parent render"));
+                  diagnostics.push((0, core_1.createDiagnostic)(exports2.nestedComponentRule, context.file, init, `Component "${innerPath.node.id.name}" defined inside "${outerPath.node.id?.name ?? "component"}"`, "Move nested components outside to prevent remounting on every parent render"));
                 }
               }
             });
@@ -46922,7 +46924,7 @@ var require_unstable_context = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.unstableContextRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.unstableContextRule = {
       id: "unstable-context",
@@ -46945,7 +46947,7 @@ var require_unstable_context = __commonJS({
             }
             const expr = valueAttr.value.expression;
             if (expr.type === "ObjectExpression" || expr.type === "ArrayExpression") {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.unstableContextRule, context.file, expr, "Inline object/array passed as Context.Provider value", "Memoize the context value with useMemo to avoid unnecessary re-renders"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.unstableContextRule, context.file, expr, "Inline object/array passed as Context.Provider value", "Memoize the context value with useMemo to avoid unnecessary re-renders"));
             }
           }
         });
@@ -47010,7 +47012,7 @@ var require_blocking_import = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.blockingImportRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.blockingImportRule = {
       id: "blocking-import",
@@ -47025,7 +47027,7 @@ var require_blocking_import = __commonJS({
             const source = path2.node.source.value;
             const matched = heavyImports.find((lib) => source === lib || source.startsWith(`${lib}/`));
             if (matched) {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.blockingImportRule, context.file, path2.node, `Heavy library "${matched}" imported synchronously`, "Use dynamic import() or import specific submodules to reduce bundle size"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.blockingImportRule, context.file, path2.node, `Heavy library "${matched}" imported synchronously`, "Use dynamic import() or import specific submodules to reduce bundle size"));
             }
           }
         });
@@ -47044,7 +47046,7 @@ var require_dynamic_import = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.dynamicImportRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     var LAZY_CANDIDATES = ["Chart", "Editor", "Modal", "Dashboard", "Map", "Calendar"];
     exports2.dynamicImportRule = {
@@ -47066,7 +47068,7 @@ var require_dynamic_import = __commonJS({
               return LAZY_CANDIDATES.some((c) => name.includes(c));
             });
             if (hasLazyCandidate) {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.dynamicImportRule, context.file, path2.node, "Large component imported statically \u2014 consider lazy loading", "Use React.lazy() with dynamic import() for code splitting"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.dynamicImportRule, context.file, path2.node, "Large component imported statically \u2014 consider lazy loading", "Use React.lazy() with dynamic import() for code splitting"));
             }
           }
         });
@@ -47086,7 +47088,7 @@ var require_bundle_budget = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.bundleBudgetRule = void 0;
     var fs_1 = __importDefault(require("fs"));
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     exports2.bundleBudgetRule = {
       id: "bundle-budget",
       name: "Bundle Budget",
@@ -47099,7 +47101,7 @@ var require_bundle_budget = __commonJS({
           const stats = fs_1.default.statSync(context.file);
           const sizeKb = stats.size / 1024;
           if (sizeKb > budgetKb) {
-            diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.bundleBudgetRule, context.file, null, `File size ${sizeKb.toFixed(1)}KB exceeds budget of ${budgetKb}KB`, "Split the module or lazy-load heavy dependencies"));
+            diagnostics.push((0, core_1.createDiagnostic)(exports2.bundleBudgetRule, context.file, null, `File size ${sizeKb.toFixed(1)}KB exceeds budget of ${budgetKb}KB`, "Split the module or lazy-load heavy dependencies"));
           }
         } catch {
         }
@@ -47118,7 +47120,7 @@ var require_lazy_image = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.lazyImageRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.lazyImageRule = {
       id: "lazy-image",
@@ -47134,7 +47136,7 @@ var require_lazy_image = __commonJS({
               return;
             const hasLazy = path2.node.attributes.some((attr) => attr.type === "JSXAttribute" && attr.name.type === "JSXIdentifier" && attr.name.name === "loading" && attr.value?.type === "StringLiteral" && attr.value.value === "lazy");
             if (!hasLazy) {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.lazyImageRule, context.file, path2.node, '<img> without loading="lazy"', 'Add loading="lazy" or use a lazy-loading image component'));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.lazyImageRule, context.file, path2.node, '<img> without loading="lazy"', 'Add loading="lazy" or use a lazy-loading image component'));
             }
           }
         });
@@ -47153,7 +47155,7 @@ var require_expensive_render = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.expensiveRenderRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.expensiveRenderRule = {
       id: "expensive-render",
@@ -47172,7 +47174,7 @@ var require_expensive_render = __commonJS({
             const inListContext = path2.findParent((p) => p.isCallExpression() && isArrayMapCall(p.node));
             if (inListContext)
               return;
-            diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.expensiveRenderRule, context.file, path2.node, ".map() used directly in JSX without memoization", "Extract list rendering to a memoized child component or use useMemo"));
+            diagnostics.push((0, core_1.createDiagnostic)(exports2.expensiveRenderRule, context.file, path2.node, ".map() used directly in JSX without memoization", "Extract list rendering to a memoized child component or use useMemo"));
           }
         });
         return diagnostics;
@@ -47230,7 +47232,7 @@ var require_circular_import = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.circularImportRule = void 0;
     var path_1 = __importDefault(require("path"));
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     exports2.circularImportRule = {
       id: "circular-import",
       name: "Circular Import",
@@ -47239,7 +47241,7 @@ var require_circular_import = __commonJS({
       run(context) {
         if (!context.project)
           return [];
-        const cycles = (0, prism_guard_core_1.findCycles)(context.project.importGraph);
+        const cycles = (0, core_1.findCycles)(context.project.importGraph);
         const diagnostics = [];
         const seen = /* @__PURE__ */ new Set();
         for (const cycle of cycles) {
@@ -47249,7 +47251,7 @@ var require_circular_import = __commonJS({
           seen.add(key);
           if (!cycle.includes(path_1.default.resolve(context.file)))
             continue;
-          diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.circularImportRule, context.file, null, `Circular import detected: ${formatCycle(cycle)}`, "Refactor shared logic into a separate module to break the cycle"));
+          diagnostics.push((0, core_1.createDiagnostic)(exports2.circularImportRule, context.file, null, `Circular import detected: ${formatCycle(cycle)}`, "Refactor shared logic into a separate module to break the cycle"));
         }
         return diagnostics;
       }
@@ -47271,7 +47273,7 @@ var require_feature_boundary = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.featureBoundaryRule = void 0;
     var path_1 = __importDefault(require("path"));
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.featureBoundaryRule = {
       id: "feature-boundary",
@@ -47292,7 +47294,7 @@ var require_feature_boundary = __commonJS({
             const resolved = path_1.default.resolve(path_1.default.dirname(context.file), source);
             const importFeature = getFeatureName(resolved, featureDirs);
             if (importFeature && importFeature !== fileFeature) {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.featureBoundaryRule, context.file, path2.node, `Cross-feature import from "${importFeature}" into "${fileFeature}"`, "Use shared modules or public feature APIs instead of direct cross-feature imports"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.featureBoundaryRule, context.file, path2.node, `Cross-feature import from "${importFeature}" into "${fileFeature}"`, "Use shared modules or public feature APIs instead of direct cross-feature imports"));
             }
           }
         });
@@ -47324,7 +47326,7 @@ var require_dependency_direction = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.layerViolationRule = exports2.dependencyDirectionRule = void 0;
     var path_1 = __importDefault(require("path"));
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     var LAYER_ORDER = ["ui", "features", "shared", "data"];
     exports2.dependencyDirectionRule = {
@@ -47350,7 +47352,7 @@ var require_dependency_direction = __commonJS({
               return;
             const importRank = layers.indexOf(importLayer);
             if (importRank < fileRank) {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.dependencyDirectionRule, context.file, path2.node, `Layer violation: "${fileLayer}" imports from upper layer "${importLayer}"`, "Dependencies should flow downward (ui \u2192 features \u2192 shared \u2192 data)"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.dependencyDirectionRule, context.file, path2.node, `Layer violation: "${fileLayer}" imports from upper layer "${importLayer}"`, "Dependencies should flow downward (ui \u2192 features \u2192 shared \u2192 data)"));
             }
           }
         });
@@ -47385,7 +47387,7 @@ var require_folder_boundary = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.folderBoundaryRule = void 0;
     var path_1 = __importDefault(require("path"));
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var ALLOWED_ROOTS = ["src", "app", "components", "features", "pages", "lib", "hooks", "utils"];
     exports2.folderBoundaryRule = {
       id: "folder-boundary",
@@ -47399,11 +47401,11 @@ var require_folder_boundary = __commonJS({
         const relative = normalized.startsWith(projectRoot + "/") ? normalized.slice(projectRoot.length + 1) : path_1.default.basename(normalized);
         const inAllowedRoot = ALLOWED_ROOTS.some((root) => relative.startsWith(`${root}/`) || relative.split("/")[0] === root);
         if (!inAllowedRoot && (relative.endsWith(".tsx") || relative.endsWith(".jsx"))) {
-          diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.folderBoundaryRule, context.file, null, "React component outside standard folder structure", `Place components under one of: ${ALLOWED_ROOTS.join(", ")}`));
+          diagnostics.push((0, core_1.createDiagnostic)(exports2.folderBoundaryRule, context.file, null, "React component outside standard folder structure", `Place components under one of: ${ALLOWED_ROOTS.join(", ")}`));
         }
         const depth = relative.split("/").length;
         if (depth > 6) {
-          diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.folderBoundaryRule, context.file, null, `Deeply nested file path (depth ${depth})`, "Flatten folder structure to improve discoverability"));
+          diagnostics.push((0, core_1.createDiagnostic)(exports2.folderBoundaryRule, context.file, null, `Deeply nested file path (depth ${depth})`, "Flatten folder structure to improve discoverability"));
         }
         return diagnostics;
       }
@@ -47420,7 +47422,7 @@ var require_excessive_props = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.excessivePropsRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.excessivePropsRule = {
       id: "excessive-props",
@@ -47447,7 +47449,7 @@ var require_excessive_props = __commonJS({
         return;
       const propCount = countProps(first);
       if (propCount > maxProps) {
-        diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.excessivePropsRule, context.file, node, `Component accepts ${propCount} props (max ${maxProps})`, "Group related props into objects or split the component"));
+        diagnostics.push((0, core_1.createDiagnostic)(exports2.excessivePropsRule, context.file, node, `Component accepts ${propCount} props (max ${maxProps})`, "Group related props into objects or split the component"));
       }
     }
     function countProps(pattern) {
@@ -47465,7 +47467,7 @@ var require_duplicate_hooks = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.duplicateHooksRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.duplicateHooksRule = {
       id: "duplicate-hooks",
@@ -47490,7 +47492,7 @@ var require_duplicate_hooks = __commonJS({
         });
         for (const [hook, { count, node }] of hookCounts) {
           if (count > 1) {
-            diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.duplicateHooksRule, context.file, node, `Hook "${hook}" called ${count} times in the same component`, "Extract shared hook logic into a custom hook"));
+            diagnostics.push((0, core_1.createDiagnostic)(exports2.duplicateHooksRule, context.file, node, `Hook "${hook}" called ${count} times in the same component`, "Extract shared hook logic into a custom hook"));
           }
         }
         return diagnostics;
@@ -47514,7 +47516,7 @@ var require_cognitive_complexity = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.cognitiveComplexityRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     var COMPLEXITY_THRESHOLD = 15;
     exports2.cognitiveComplexityRule = {
@@ -47528,13 +47530,13 @@ var require_cognitive_complexity = __commonJS({
           FunctionDeclaration(path2) {
             const complexity = measureComplexity(path2.node.body);
             if (complexity > COMPLEXITY_THRESHOLD) {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.cognitiveComplexityRule, context.file, path2.node, `Function "${path2.node.id?.name ?? "anonymous"}" has cognitive complexity ${complexity}`, "Reduce branching, extract helpers, or split into smaller functions"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.cognitiveComplexityRule, context.file, path2.node, `Function "${path2.node.id?.name ?? "anonymous"}" has cognitive complexity ${complexity}`, "Reduce branching, extract helpers, or split into smaller functions"));
             }
           },
           ArrowFunctionExpression(path2) {
             const complexity = measureComplexity(path2.node.body);
             if (complexity > COMPLEXITY_THRESHOLD) {
-              diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.cognitiveComplexityRule, context.file, path2.node, `Arrow function has cognitive complexity ${complexity}`, "Reduce branching, extract helpers, or split into smaller functions"));
+              diagnostics.push((0, core_1.createDiagnostic)(exports2.cognitiveComplexityRule, context.file, path2.node, `Arrow function has cognitive complexity ${complexity}`, "Reduce branching, extract helpers, or split into smaller functions"));
             }
           }
         });
@@ -47574,7 +47576,7 @@ var require_component_complexity = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.componentComplexityRule = void 0;
-    var prism_guard_core_1 = require_dist();
+    var core_1 = require_dist();
     var traverse_1 = __importDefault(require_lib8());
     exports2.componentComplexityRule = {
       id: "component-complexity",
@@ -47605,10 +47607,10 @@ var require_component_complexity = __commonJS({
       const jsxDepth = estimateJsxDepth(body);
       const maxDepth = context.config.react?.maxJSXDepth ?? 4;
       if (hookCount > maxHooks) {
-        diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.componentComplexityRule, context.file, node, `Component "${name}" uses ${hookCount} hooks (max ${maxHooks})`, "Extract logic into custom hooks or split the component"));
+        diagnostics.push((0, core_1.createDiagnostic)(exports2.componentComplexityRule, context.file, node, `Component "${name}" uses ${hookCount} hooks (max ${maxHooks})`, "Extract logic into custom hooks or split the component"));
       }
       if (jsxDepth > maxDepth) {
-        diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports2.componentComplexityRule, context.file, node, `Component "${name}" has JSX nesting depth ${jsxDepth} (max ${maxDepth})`, "Extract nested JSX into sub-components"));
+        diagnostics.push((0, core_1.createDiagnostic)(exports2.componentComplexityRule, context.file, node, `Component "${name}" has JSX nesting depth ${jsxDepth} (max ${maxDepth})`, "Extract nested JSX into sub-components"));
       }
     }
     function estimateJsxDepth(body) {
@@ -47695,10 +47697,10 @@ var require_dist4 = __commonJS({
 // src/index.ts
 var import_fs = __toESM(require("fs"));
 var import_path = __toESM(require("path"));
-var import_prism_guard_core = __toESM(require_dist());
-var import_prism_guard_rules_react = __toESM(require_dist2());
-var import_prism_guard_rules_performance = __toESM(require_dist3());
-var import_prism_guard_rules_architecture = __toESM(require_dist4());
+var import_core = __toESM(require_dist());
+var import_rules_react = __toESM(require_dist2());
+var import_rules_performance = __toESM(require_dist3());
+var import_rules_architecture = __toESM(require_dist4());
 function parseArgs(argv) {
   const args = {};
   let command = null;
@@ -47739,20 +47741,20 @@ function parseArgs(argv) {
   };
 }
 function createRegistry() {
-  const registry = new import_prism_guard_core.RuleRegistry();
-  registry.registerAll(import_prism_guard_rules_react.reactRules);
-  registry.registerAll(import_prism_guard_rules_performance.performanceRules);
-  registry.registerAll(import_prism_guard_rules_architecture.architectureRules);
+  const registry = new import_core.RuleRegistry();
+  registry.registerAll(import_rules_react.reactRules);
+  registry.registerAll(import_rules_performance.performanceRules);
+  registry.registerAll(import_rules_architecture.architectureRules);
   return registry;
 }
 async function runAnalyze(args) {
   const root = import_path.default.resolve(args.cwd ?? process.cwd());
   const previousCwd = process.cwd();
   process.chdir(root);
-  const config = args.config ? (0, import_prism_guard_core.loadConfig)(import_path.default.resolve(args.config)) : (0, import_prism_guard_core.loadConfig)();
+  const config = args.config ? (0, import_core.loadConfig)(import_path.default.resolve(args.config)) : (0, import_core.loadConfig)();
   process.chdir(previousCwd);
   config.root = root;
-  const warnings = (0, import_prism_guard_core.validateConfig)(config);
+  const warnings = (0, import_core.validateConfig)(config);
   if (warnings.length && !args.json) {
     console.warn(`\u26A0 ${warnings.length} configuration warning(s):`);
     for (const warning of warnings) {
@@ -47761,13 +47763,13 @@ async function runAnalyze(args) {
     console.warn();
   }
   const registry = createRegistry();
-  const result = (0, import_prism_guard_core.analyze)({
+  const result = (0, import_core.analyze)({
     root,
     config,
     registry
   });
   if (args.json) {
-    const output = (0, import_prism_guard_core.reportJson)(result);
+    const output = (0, import_core.reportJson)(result);
     if (args.output) {
       import_fs.default.writeFileSync(args.output, output, "utf8");
       console.log(`\u2714 JSON report written to ${args.output}`);
@@ -47775,22 +47777,21 @@ async function runAnalyze(args) {
       console.log(output);
     }
   } else if (args.html) {
-    const output = (0, import_prism_guard_core.reportHtml)(result);
+    const output = (0, import_core.reportHtml)(result);
     const outPath = args.output ?? import_path.default.join(root, "prism-report.html");
-    import_fs.default.writeFileSync(outPath, output, "utf8");
     import_fs.default.writeFileSync(outPath, output, "utf8");
     console.log(`\u2714 HTML report written to ${outPath}`);
   } else if (args.sarif) {
-    const output = (0, import_prism_guard_core.reportSarif)(result);
+    const output = (0, import_core.reportSarif)(result);
     const outPath = args.output ?? import_path.default.join(root, "prism-report.sarif");
     import_fs.default.writeFileSync(outPath, output, "utf8");
     console.log(`\u2714 SARIF report written to ${outPath}`);
   } else {
-    (0, import_prism_guard_core.reportConsole)(result, {
+    (0, import_core.reportConsole)(result, {
       verbose: args.verbose
     });
   }
-  return (0, import_prism_guard_core.shouldFail)(config, result.diagnostics) ? 1 : 0;
+  return (0, import_core.shouldFail)(config, result.diagnostics) ? 1 : 0;
 }
 function printHelp() {
   console.log(`
@@ -47811,7 +47812,7 @@ Options
   --sarif             SARIF report
   --output <path>     Output file
   --verbose           Detailed console output
-  -h, --help          Help
+  -h, --help          Show help
 `);
 }
 async function main() {
@@ -47831,7 +47832,6 @@ async function main() {
       console.error(`Unknown command "${command}"`);
       printHelp();
       process.exitCode = 1;
-      return;
   }
 }
 main().catch((err) => {

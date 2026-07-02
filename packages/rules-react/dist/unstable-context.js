@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.unstableContextRule = void 0;
-const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
+const core_1 = require("@prism-guard/core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 exports.unstableContextRule = {
     id: "unstable-context",
@@ -33,7 +33,7 @@ exports.unstableContextRule = {
                 }
                 const expr = valueAttr.value.expression;
                 if (expr.type === "ObjectExpression" || expr.type === "ArrayExpression") {
-                    diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.unstableContextRule, context.file, expr, "Inline object/array passed as Context.Provider value", "Memoize the context value with useMemo to avoid unnecessary re-renders"));
+                    diagnostics.push((0, core_1.createDiagnostic)(exports.unstableContextRule, context.file, expr, "Inline object/array passed as Context.Provider value", "Memoize the context value with useMemo to avoid unnecessary re-renders"));
                 }
             }
         });

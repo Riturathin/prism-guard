@@ -1,3 +1,3 @@
-import type { Rule } from "@riturathinsharma/prism-guard-core";
+import type { Rule } from "@prism-guard/core";
 export declare const noArrayIndexKeyRule: Rule;
 //# sourceMappingURL=no-array-index-key.d.ts.map

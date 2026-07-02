@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.expensiveRenderRule = void 0;
-const prism_guard_core_1 = require("@riturathinsharma/prism-guard-core");
+const core_1 = require("@prism-guard/core");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 exports.expensiveRenderRule = {
     id: "expensive-render",
@@ -23,7 +23,7 @@ exports.expensiveRenderRule = {
                 const inListContext = path.findParent(p => p.isCallExpression() && isArrayMapCall(p.node));
                 if (inListContext)
                     return;
-                diagnostics.push((0, prism_guard_core_1.createDiagnostic)(exports.expensiveRenderRule, context.file, path.node, ".map() used directly in JSX without memoization", "Extract list rendering to a memoized child component or use useMemo"));
+                diagnostics.push((0, core_1.createDiagnostic)(exports.expensiveRenderRule, context.file, path.node, ".map() used directly in JSX without memoization", "Extract list rendering to a memoized child component or use useMemo"));
             }
         });
         return diagnostics;
