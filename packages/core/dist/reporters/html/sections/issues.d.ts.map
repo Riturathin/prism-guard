@@ -1,1 +1,1 @@
-{"version":3,"file":"issues.d.ts","sourceRoot":"","sources":["../../../../src/reporters/html/sections/issues.ts"],"names":[],"mappings":""}
+{"version":3,"file":"issues.d.ts","sourceRoot":"","sources":["../../../../src/reporters/html/sections/issues.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,UAAU,CAAC;AAEhD,wBAAgB,MAAM,CAAC,KAAK,EAAE,eAAe,GAAG,MAAM,CA0ErD"}

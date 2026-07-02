@@ -1,54 +1,70 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.worstFiles = worstFiles;
-const path_1 = __importDefault(require("path"));
 function worstFiles(model) {
-    const rows = model.files
-        .slice(0, 5)
-        .map(file => `
-
-        <tr>
-
-        <td>${path_1.default.basename(file.file)}</td>
-
-        <td>${file.score}</td>
-
-        </tr>
-
-        `)
-        .join("");
+    const files = model.files.slice(0, 5);
     return `
+<section>
 
-        <section>
+<h2>Worst Files</h2>
 
-        <h2>Worst Files</h2>
+<div class="worst-files">
 
-        <table>
+${files
+        .map(file => {
+        const width = Math.max(file.score, 5);
+        return `
 
-        <thead>
+<div class="worst-file">
 
-        <tr>
+    <div class="wf-header">
 
-        <th>File</th>
+        <span class="wf-name">${shortName(file.file)}</span>
 
-        <th>Score</th>
+        <span class="wf-score">${file.score}/100</span>
 
-        </tr>
+    </div>
 
-        </thead>
+    <div class="wf-bar">
 
-        <tbody>
+        <div
+            class="wf-fill"
+            style="
+                width:${width}%;
+                background:${color(file.score)}
+            ">
+        </div>
 
-        ${rows}
+    </div>
 
-        </tbody>
+    <div class="wf-footer">
 
-        </table>
+        ${file.diagnostics.length} issue(s)
 
-        </section>
+    </div>
+
+</div>
 
 `;
+    })
+        .join("")}
+
+</div>
+
+</section>
+`;
+}
+function shortName(path) {
+    return path.split("/").slice(-2).join("/");
+}
+function color(score) {
+    if (score >= 90)
+        return "#22c55e";
+    if (score >= 75)
+        return "#84cc16";
+    if (score >= 60)
+        return "#f59e0b";
+    if (score >= 40)
+        return "#f97316";
+    return "#ef4444";
 }

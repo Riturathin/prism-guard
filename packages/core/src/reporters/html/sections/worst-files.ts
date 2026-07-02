@@ -1,53 +1,69 @@
-import path from "path";
 import type { HtmlReportModel } from "../model";
 
 export function worstFiles(model: HtmlReportModel): string {
+  const files = model.files.slice(0, 5);
 
-    const rows = model.files
-        .slice(0,5)
-        .map(file=>`
+  return `
+<section>
 
-        <tr>
+<h2>Worst Files</h2>
 
-        <td>${path.basename(file.file)}</td>
+<div class="worst-files">
 
-        <td>${file.score}</td>
+${files
+  .map(file => {
+    const width = Math.max(file.score, 5);
 
-        </tr>
+    return `
 
-        `)
-        .join("");
+<div class="worst-file">
 
-        return `
+    <div class="wf-header">
 
-        <section>
+        <span class="wf-name">${shortName(file.file)}</span>
 
-        <h2>Worst Files</h2>
+        <span class="wf-score">${file.score}/100</span>
 
-        <table>
+    </div>
 
-        <thead>
+    <div class="wf-bar">
 
-        <tr>
+        <div
+            class="wf-fill"
+            style="
+                width:${width}%;
+                background:${color(file.score)}
+            ">
+        </div>
 
-        <th>File</th>
+    </div>
 
-        <th>Score</th>
+    <div class="wf-footer">
 
-        </tr>
+        ${file.diagnostics.length} issue(s)
 
-        </thead>
+    </div>
 
-        <tbody>
-
-        ${rows}
-
-        </tbody>
-
-        </table>
-
-        </section>
+</div>
 
 `;
+  })
+  .join("")}
 
+</div>
+
+</section>
+`;
+}
+
+function shortName(path: string) {
+  return path.split("/").slice(-2).join("/");
+}
+
+function color(score: number) {
+  if (score >= 90) return "#22c55e";
+  if (score >= 75) return "#84cc16";
+  if (score >= 60) return "#f59e0b";
+  if (score >= 40) return "#f97316";
+  return "#ef4444";
 }

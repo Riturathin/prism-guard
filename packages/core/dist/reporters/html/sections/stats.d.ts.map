@@ -1,1 +1,1 @@
-{"version":3,"file":"stats.d.ts","sourceRoot":"","sources":["../../../../src/reporters/html/sections/stats.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,UAAU,CAAC;AAEhD,wBAAgB,KAAK,CAAC,KAAK,EAAE,eAAe,GAAG,MAAM,CAsCpD"}
+{"version":3,"file":"stats.d.ts","sourceRoot":"","sources":["../../../../src/reporters/html/sections/stats.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,UAAU,CAAC;AAEhD,wBAAgB,KAAK,CAAC,KAAK,EAAE,eAAe,GAAG,MAAM,CAwDpD"}

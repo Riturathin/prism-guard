@@ -14,7 +14,7 @@ Prism Guard
 
 <p>
 
-Frontend Architecture Intelligence Platform
+Architecture • Performance • Maintainability • React Best Practices
 
 </p>
 

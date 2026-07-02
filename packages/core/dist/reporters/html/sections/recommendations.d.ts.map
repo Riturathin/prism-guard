@@ -1,1 +1,1 @@
-{"version":3,"file":"recommendations.d.ts","sourceRoot":"","sources":["../../../../src/reporters/html/sections/recommendations.ts"],"names":[],"mappings":""}
+{"version":3,"file":"recommendations.d.ts","sourceRoot":"","sources":["../../../../src/reporters/html/sections/recommendations.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,UAAU,CAAC;AAEhD,wBAAgB,eAAe,CAAC,KAAK,EAAE,eAAe,GAAG,MAAM,CA6D9D"}
