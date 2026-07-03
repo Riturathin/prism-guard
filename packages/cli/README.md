@@ -2,7 +2,7 @@
 
 <p align="center">
 
-**Frontend Architecture Intelligence Platform for React & TypeScript**
+**Prism Guard is an open-source static analysis tool for React and TypeScript. It detects architecture violations, React anti-patterns, performance bottlenecks, and code quality issues before they reach production.**
 
 Analyze architectural quality, React anti-patterns, performance bottlenecks and code health with a single command.
 
