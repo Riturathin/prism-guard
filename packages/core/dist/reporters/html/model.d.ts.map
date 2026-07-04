@@ -1,1 +1,0 @@
-{"version":3,"file":"model.d.ts","sourceRoot":"","sources":["../../../src/reporters/html/model.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,aAAa,CAAC;AAClD,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,0BAA0B,CAAC;AAC1D,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,qBAAqB,CAAC;AAExD,MAAM,WAAW,eAAe;IAC9B,MAAM,EAAE,cAAc,CAAC;IACvB,KAAK,EAAE,YAAY,CAAC;IACpB,KAAK,EAAE,SAAS,EAAE,CAAC;CACpB"}

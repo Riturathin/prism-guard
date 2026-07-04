@@ -1,1 +1,0 @@
-{"version":3,"file":"score.d.ts","sourceRoot":"","sources":["../../src/scoring/score.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,UAAU,CAAC;AAE/C,MAAM,WAAW,YAAY;IAC3B,OAAO,EAAE,MAAM,CAAC;IAChB,MAAM,EAAE,MAAM,CAAC;IACf,QAAQ,EAAE,MAAM,CAAC;IACjB,IAAI,EAAE,MAAM,CAAC;CACd;AAMD,wBAAgB,cAAc,CAAC,MAAM,EAAE,cAAc,GAAG,YAAY,CA2BnE"}

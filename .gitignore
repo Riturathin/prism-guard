@@ -1,3 +1,19 @@
+# Build output
+packages/**/dist/
+
+# Keep source only
+!packages/**/src/
+
+# Reports
 reports/*
 !reports/.gitkeep
+
+# macOS
 .DS_Store
+
+# Node
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
