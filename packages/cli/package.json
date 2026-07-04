@@ -1,6 +1,6 @@
 {
   "name": "@prism-guard/cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Open-source static analysis CLI for React & TypeScript. Detect architecture issues, performance anti-patterns, code quality problems, and generate HTML, JSON & SARIF reports.",
   "license": "MIT",
   "author": "Ritumoni Sarma",
